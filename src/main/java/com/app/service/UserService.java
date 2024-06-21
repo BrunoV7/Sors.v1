@@ -23,13 +23,18 @@ public class UserService {
     }
 
     public User findById(long id) {
-        return this.userRepository.findById(id).get();
+        return this.userRepository.findById(id).orElse(null);
     }
 
     public String update(long id,User user) {
         user.setId(id);
         this.userRepository.save(user);
         return "Atualizado com sucesso!";
+    }
+
+    public String delete(long id) {
+        this.userRepository.deleteById(id);
+        return "Deletado com sucesso!";
     }
 
 }

@@ -1,8 +1,8 @@
 package com.app.repositories;
 
-import com.app.entity.recebido;
+import com.app.entity.Entrada;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RecebidoRepository extends JpaRepository<recebido, Long> {
+public interface EntradaRepository extends JpaRepository<Entrada, Long> {
     //SÓ AUTOMATICOS POR ENQUANTO
 }

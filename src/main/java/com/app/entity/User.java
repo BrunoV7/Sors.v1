@@ -34,18 +34,18 @@ public class User {
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("usuario")
-    private List<conta> contas;
+    private List<Conta> Contas;
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("usuario")
-    private List<cartao_credito> cartoes;
+    private List<Cartao_credito> cartoes;
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("usuario")
-    private List<metas> metas;
+    private List<Metas> metas;
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("usuario")
-    private List<contas_corrente> contas_corrente;
+    private List<Contas_corrente> contas_corrente;
 
 }

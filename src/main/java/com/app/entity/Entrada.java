@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
+@Getter
+@Setter
 @Entity
-public class recebido {
+public class Entrada {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -33,5 +37,5 @@ public class recebido {
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("conta")
-    private tipo_recebido tipo;
+    private Tipo_recebido tipo;
 }

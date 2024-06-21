@@ -58,4 +58,14 @@ public class UserController {
         }
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable Integer id) {
+        try {
+            String resposta = this.userService.delete(id);
+            return new ResponseEntity<>(resposta, HttpStatus.OK);
+        }catch(Exception e) {
+            return new ResponseEntity<>("Falha ao deletar!", HttpStatus.BAD_REQUEST);
+        }
+    }
+
 }

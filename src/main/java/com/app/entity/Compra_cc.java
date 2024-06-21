@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-public class compra_cc {
+public class Compra_cc {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +26,6 @@ public class compra_cc {
 
     @ManyToOne(cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("compra_cc")
-    private cartao_credito cartao_credito;
+    private Cartao_credito cartao_credito;
 
 }

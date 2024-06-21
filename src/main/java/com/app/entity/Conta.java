@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-public class conta {
+public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -34,5 +34,5 @@ public class conta {
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("Conta")
-    private tipo_conta tipo;
+    private Tipo_conta tipo;
 }

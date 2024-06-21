@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class cartao_credito {
+public class Cartao_credito {
 
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class cartao_credito {
 
     @OneToMany(cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("cartao_credito")
-    private List<compra_cc> compra;
+    private List<Compra_cc> compra;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
