@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
-public class Conta {
+public class recebido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -20,7 +20,7 @@ public class Conta {
     private double valor;
 
     @Temporal(TemporalType.DATE)
-    private Date vencimento;
+    private Date recebimento;
 
     @Temporal(TemporalType.DATE)
     private Date dataDeCadastro;
@@ -33,5 +33,5 @@ public class Conta {
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JsonIgnoreProperties("conta")
-    private Tipo_conta tipo;
+    private tipo_recebido tipo;
 }

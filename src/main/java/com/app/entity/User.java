@@ -5,10 +5,14 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class User {
     @Id
@@ -28,8 +32,20 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date birthdate;
 
-    @OneToMany(mappedBy = "conta")
-    @JsonIgnoreProperties("conta")
-    private List<Conta> contas;
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
+    private List<conta> contas;
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
+    private List<cartao_credito> cartoes;
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
+    private List<metas> metas;
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
+    private List<contas_corrente> contas_corrente;
 
 }
