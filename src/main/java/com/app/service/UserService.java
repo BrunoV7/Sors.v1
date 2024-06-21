@@ -2,6 +2,7 @@ package com.app.service;
 
 import com.app.entity.User;
 import com.app.repositories.UserRepository;
+import org.hibernate.ResourceClosedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class UserService {
     }
 
     public User findById(long id) {
-        return this.userRepository.findById(id).orElse(null);
+        return userRepository.findById(id).orElseThrow(() -> new ResourceClosedException("Usuario não encontrado!"));
     }
 
     public String update(long id,User user) {

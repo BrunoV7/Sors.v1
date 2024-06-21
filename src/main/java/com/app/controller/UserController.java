@@ -22,9 +22,9 @@ public class UserController {
     public ResponseEntity<String> save(@RequestBody User user) {
         try {
             String resposta = this.userService.save(user);
-            return new ResponseEntity<String>(resposta, HttpStatus.CREATED);
+            return new ResponseEntity<>(resposta, HttpStatus.CREATED);
         }catch(Exception e) {
-            return new ResponseEntity<String>("Falhou! objeto não foi lido!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Falhou! objeto não foi lido!", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -52,9 +52,9 @@ public class UserController {
     public ResponseEntity<String> update(@PathVariable Integer id, @RequestBody User user) {
         try {
             String resposta = this.userService.update(id,user);
-            return new ResponseEntity<String>(resposta, HttpStatus.CREATED);
+            return new ResponseEntity<>(resposta, HttpStatus.CREATED);
         }catch(Exception e) {
-            return new ResponseEntity<String>("Falhou! objeto não foi lido!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Falhou! objeto não foi lido!", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -66,6 +66,11 @@ public class UserController {
         }catch(Exception e) {
             return new ResponseEntity<>("Falha ao deletar!", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/hi")
+    public ResponseEntity<String> hi() {
+        return new ResponseEntity<>("Hello World!", HttpStatus.OK);
     }
 
 }

@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-public class Tipo_conta {
+public class Tipo_saida {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

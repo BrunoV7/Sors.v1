@@ -1,8 +1,8 @@
 package com.app.repositories;
 
-import com.app.entity.Conta;
+import com.app.entity.Contas_corrente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ContaRepository extends JpaRepository<Conta, Long> {
+public interface Contas_cRepository extends JpaRepository<Contas_corrente, Long> {
     //SÓ AUTOMATICOS POR ENQUANTO
 }
