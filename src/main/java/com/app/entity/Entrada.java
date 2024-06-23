@@ -32,10 +32,11 @@ public class Entrada {
     private String descricao;
 
     @OneToOne(cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("conta")
+    @JsonIgnoreProperties("Entrada")
     private Tipo_recebido tipo;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("conta")
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnoreProperties("Entrada")
     private User usuario;
 }

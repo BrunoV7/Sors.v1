@@ -31,12 +31,13 @@ public class Saida {
 
     private String descricao;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("Saida")
+    private Tipo_saida tipo;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "usuario_id")
-    @JsonIgnoreProperties("Conta")
+    @JsonIgnoreProperties("Saida")
     private User usuario;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("Conta")
-    private Tipo_saida tipo;
 }

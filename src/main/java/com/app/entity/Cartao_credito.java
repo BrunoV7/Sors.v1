@@ -32,7 +32,7 @@ public class Cartao_credito {
     @NotNull
     private int vencimento;
 
-    @OneToMany(cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "cartao_credito")
     @JsonIgnoreProperties("cartao_credito")
     private List<Compra_cc> compras;
 
