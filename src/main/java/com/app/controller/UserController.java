@@ -1,5 +1,6 @@
 package com.app.controller;
 
+import com.app.entity.Login;
 import com.app.entity.User;
 import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/user")
 public class UserController {
 
@@ -71,6 +73,16 @@ public class UserController {
     @GetMapping("/hi")
     public ResponseEntity<String> hi() {
         return new ResponseEntity<>("Hello World!", HttpStatus.OK);
+    }
+
+    @PostMapping("/logar")
+    public ResponseEntity<Boolean> logar(@RequestBody Login user) {
+        try {
+            this.userService.logar(user);
+            return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
+        }catch (Exception e){
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
     }
 
 }

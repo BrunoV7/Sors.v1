@@ -1,10 +1,12 @@
 package com.app.service;
 
+import com.app.entity.Login;
 import com.app.entity.User;
 import com.app.repositories.UserRepository;
 import org.hibernate.ResourceClosedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
@@ -36,6 +38,17 @@ public class UserService {
     public String delete(long id) {
         this.userRepository.deleteById(id);
         return "Deletado com sucesso!";
+    }
+
+    public Boolean logar(Login user) {
+        User UserTest = this.userRepository.findByEmail(user.getEmail());
+        if (UserTest == null) {
+            return false;
+        }else if(UserTest.getPassword().equals(user.getPassword())) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
