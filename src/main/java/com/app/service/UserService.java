@@ -40,15 +40,25 @@ public class UserService {
         return "Deletado com sucesso!";
     }
 
-    public Boolean logar(Login user) {
+    public User logar(Login user) throws Exception {
+        // Busca o usuário no repositório pelo email fornecido
         User UserTest = this.userRepository.findByEmail(user.getEmail());
+
+        // Verifica se o usuário existe
         if (UserTest == null) {
-            return false;
-        }else if(UserTest.getPassword().equals(user.getPassword())) {
-            return true;
-        }else{
-            return false;
+            System.out.println("Usuário não encontrado");
+            throw new Exception("Usuario não encontrado!"); // Usuário não encontrado
+        } else {
+            // Compara as senhas
+            if (UserTest.getPassword().equals(user.getPassword())) {
+                System.out.println("Senha correta");
+                return UserTest; // Login bem-sucedido
+            } else {
+                System.out.println("Senha incorreta");
+                throw new Exception("Senha incorreta!"); // Senha incorreta
+            }
         }
     }
+
 
 }

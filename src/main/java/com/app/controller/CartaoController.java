@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import com.app.entity.Cartao_credito;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/cartoes")
 public class CartaoController {

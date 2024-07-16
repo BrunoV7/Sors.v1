@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -76,12 +77,12 @@ public class UserController {
     }
 
     @PostMapping("/logar")
-    public ResponseEntity<Boolean> logar(@RequestBody Login user) {
+    public ResponseEntity<User> logar(@RequestBody Login user) {
         try {
-            this.userService.logar(user);
-            return new ResponseEntity<>(true, HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(this.userService.logar(user), HttpStatus.ACCEPTED);
         }catch (Exception e){
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+            //return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
