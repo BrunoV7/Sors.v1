@@ -19,6 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
     @Email
     private String email;
 
@@ -28,13 +29,20 @@ public class User {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String role;
+
     @NotNull
     @Temporal(TemporalType.DATE)
     private Date birthdate;
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("usuario")
-    private List<Conta> Contas;
+    private List<Saida> saidas;
+
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnoreProperties("usuario")
+    private List<Entrada> entradas;
 
     @OneToMany(mappedBy = "usuario")
     @JsonIgnoreProperties("usuario")

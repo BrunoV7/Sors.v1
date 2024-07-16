@@ -27,15 +27,16 @@ public class Entrada {
     private Date recebimento;
 
     @Temporal(TemporalType.DATE)
-    private Date dataDeCadastro;
+    private Date cadastro;
 
     private String descricao;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("conta")
-    private User usuario;
-
     @OneToOne(cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("conta")
+    @JsonIgnoreProperties("Entrada")
     private Tipo_recebido tipo;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "usuario_id")
+    @JsonIgnoreProperties("Entrada")
+    private User usuario;
 }

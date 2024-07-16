@@ -1,7 +1,10 @@
 package com.app.controller;
 
 import com.app.entity.Entrada;
+import com.app.repositories.EntradaRepository;
 import com.app.service.EntradaService;
+import com.app.service.TipoRecebidoService;
+import com.app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/entradas")
 public class EntradaController {
@@ -16,9 +20,17 @@ public class EntradaController {
     @Autowired
     private EntradaService entradaService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private TipoRecebidoService tipoRecebidoService;
+
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody Entrada entrada){
         try {
+            entrada.setUsuario(this.userService.findById(entrada.getUsuario().getId()));
+            entrada.setTipo(this.tipoRecebidoService.verificar(entrada.getTipo().getNome()));
             String resposta = this.entradaService.save(entrada);
             return new ResponseEntity<>(resposta, HttpStatus.CREATED);
         }catch (Exception e){
@@ -38,6 +50,8 @@ public class EntradaController {
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Entrada entrada){
         try {
+            entrada.setUsuario(this.userService.findById(entrada.getUsuario().getId()));
+            entrada.setTipo(this.tipoRecebidoService.verificar(entrada.getTipo().getNome()));
             return new ResponseEntity<>(this.entradaService.update(id, entrada), HttpStatus.ACCEPTED);
         }catch (Exception e){
             return new ResponseEntity<>(e.toString(), HttpStatus.BAD_REQUEST);

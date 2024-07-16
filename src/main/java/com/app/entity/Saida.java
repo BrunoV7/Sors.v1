@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
+@Getter
+@Setter
 @Entity
-public class Conta {
+public class Saida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -27,12 +31,13 @@ public class Conta {
 
     private String descricao;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JsonIgnoreProperties("Saida")
+    private Tipo_saida tipo;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "usuario_id")
-    @JsonIgnoreProperties("Conta")
+    @JsonIgnoreProperties("Saida")
     private User usuario;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JsonIgnoreProperties("Conta")
-    private Tipo_conta tipo;
 }

@@ -17,7 +17,6 @@ public class EntradaService {
         this.entradaRepository.save(entrada);
         return "Salvo com sucesso!";
     }
-
     public List<Entrada> findAll() {
         return this.entradaRepository.findAll();
     }

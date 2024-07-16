@@ -1,0 +1,13 @@
+package com.app.repositories;
+
+import com.app.entity.Tipo_recebido;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+public interface Tipo_recebidoRepository extends JpaRepository<Tipo_recebido, Long> {
+
+    @Query("SELECT tipo FROM Tipo_recebido tipo WHERE tipo.nome LIKE CONCAT('%', :nome, '%')")
+    public Tipo_recebido findByNome(@Param("nome") String nome);
+
+}
